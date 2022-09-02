@@ -729,6 +729,7 @@ class Trainer(object):
 
         self.results_folder = Path(results_folder)
         self.results_folder.mkdir(exist_ok = True)
+        print('results folder', self.results_folder.resolve())
 
         self.reset_parameters()
 

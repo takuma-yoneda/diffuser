@@ -115,8 +115,10 @@ class KukaDataset(Dataset):
     ]
 
     def __init__(self, H, max_path_length=300, max_n_episodes=15600):
-        dataset = "kuka_dataset/*.npy"
+        dataset = "metainfo/kuka_dataset/*.npy"
         datasets = sorted(glob(dataset))
+        assert len(datasets) > 0
+        print('len dataset', len(datasets))
         obs_dim = 39
 
         conditions_k, conditions_p = zip(*self.conditions)

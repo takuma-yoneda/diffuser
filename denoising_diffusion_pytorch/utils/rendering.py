@@ -1,7 +1,5 @@
 import numpy as np
 import imageio
-import gym
-import mujoco_py as mjc
 import pdb
 import sys
 
@@ -153,6 +151,8 @@ def load_world():
 class Renderer:
 
     def __init__(self, env):
+        import gym
+        import mujoco_py as mjc
         if type(env) is str:
             self.env = gym.make(env)
         else:

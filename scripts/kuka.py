@@ -3,7 +3,6 @@ import torch
 import pdb
 
 import gym
-import d4rl
 
 from denoising_diffusion_pytorch.datasets.tamp import KukaDataset
 from denoising_diffusion_pytorch import Unet, GaussianDiffusion, Trainer
@@ -17,7 +16,7 @@ sys.path.append('/data/vision/billf/scratch/yilundu/pddlstream')
 
 #### dataset
 H = 128
-env = gym.make('hopper-medium-v2')
+# env = gym.make('hopper-medium-v2')
 dataset = KukaDataset(H)
 renderer = KukaRenderer()
 
