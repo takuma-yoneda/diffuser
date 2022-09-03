@@ -1,7 +1,6 @@
 import os
 import collections
 import numpy as np
-import gym
 import pdb
 
 from contextlib import (
@@ -33,6 +32,7 @@ def load_environment(name):
         ## name is already an environment
         return name
     with suppress_output():
+        import gym
         wrapped_env = gym.make(name)
     env = wrapped_env.unwrapped
     env.max_episode_steps = wrapped_env._max_episode_steps

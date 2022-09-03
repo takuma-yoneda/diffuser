@@ -4,8 +4,6 @@ import einops
 import imageio
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
-import gym
-import mujoco_py as mjc
 import warnings
 import pdb
 
@@ -85,6 +83,8 @@ class MuJoCoRenderer:
     '''
 
     def __init__(self, env):
+        import mujoco_py as mjc
+        import gym
         if type(env) is str:
             env = env_map(env)
             self.env = gym.make(env)
