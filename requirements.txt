@@ -1,0 +1,33 @@
+absl-py>=0.7.0
+# gym==0.17.3
+# numpy==1.18.5
+pybullet>=3.0.4
+# matplotlib>=3.1.1
+opencv-python>=4.1.2.30
+meshcat>=0.0.18
+scipy==1.4.1
+# scikit-image>=0.17.2
+# tensorflow==2.3.0
+tensorflow==2.4.0
+tensorflow-addons==0.11.2
+tensorflow_hub==0.9.0
+transforms3d==0.3.1
+
+
+
+numpy==1.19.5
+gym==0.18.0
+# mujoco-py==2.0.2.13
+matplotlib==3.3.4
+# torch==1.9.0
+# torchvision==0.8.2+cu101
+typed-argument-parser
+# git+https://github.com/deepmind/dm_control@main#egg=dm_control
+# git+https://github.com/rail-berkeley/d4rl.git@c39eefd68d2f3277ca68e996a45ce1dd24e65625
+scikit-image==0.17.2
+scikit-video==1.1.11
+gitpython
+einops
+pillow
+tqdm
+pandas

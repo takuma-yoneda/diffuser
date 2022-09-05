@@ -121,3 +121,39 @@ RUN pip install jaynes ml-logger waterbear params-proto functional-notations
 
 # Workaround for a weird TensorFlow issue
 RUN pip install protobuf==3.20.*
+
+
+
+RUN curl -o /usr/local/bin/patchelf https://s3-us-west-2.amazonaws.com/openai-sci-artifacts/manual-builds/patchelf_0.9_amd64.elf \
+    && chmod +x /usr/local/bin/patchelf
+
+RUN apt-get update -q \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    libosmesa6-dev \
+    software-properties-common \
+    net-tools \
+    xpra \
+    xserver-xorg-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# ENV LD_LIBRARY_PATH /root/.mujoco/mujoco210/bin:${LD_LIBRARY_PATH}
+ENV LD_LIBRARY_PATH /usr/local/nvidia/lib64:${LD_LIBRARY_PATH}
+# COPY vendor/Xdummy /usr/local/bin/Xdummy
+# RUN chmod +x /usr/local/bin/Xdummy
+
+# Workaround for https://bugs.launchpad.net/ubuntu/+source/nvidia-graphics-drivers-375/+bug/1674677
+# COPY ./vendor/10_nvidia.json /usr/share/glvnd/egl_vendor.d/10_nvidia.json
+
+RUN mkdir -p /usr/local/etc/mujoco \
+    && wget https://mujoco.org/download/mujoco210-linux-x86_64.tar.gz -O mujoco.tar.gz \
+    && tar -xf mujoco.tar.gz -C /usr/local/etc/mujoco \
+    && rm mujoco.tar.gz
+ENV MUJOCO_PY_MUJOCO_PATH="/usr/local/etc/mujoco/mujoco210"
+ENV LD_LIBRARY_PATH="/usr/local/etc/mujoco/mujoco210/bin"
+# Compile-time library location
+ENV LIBRARY_PATH=$LD_LIBRARY_PATH
+RUN ln -s /usr/local/etc/mujoco $HOME/.mujoco \
+    && mkdir -p /mujoco_py/mujoco_py/binaries \
+    && ln -s /usr/local/etc/mujoco /mujoco_py/mujoco_py/binaries/linux
+

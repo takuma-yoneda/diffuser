@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 # .PHONY: all clean build test mount_shell shell upload check-env
 
-DOCKER_NAME := takumaynd/diffuser
+DOCKER_NAME := takumaynd/diffuser:maze2d
 DOCKER := $(shell type -p nvidia-docker || echo docker)
 
 default: build
