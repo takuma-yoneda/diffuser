@@ -47,6 +47,11 @@ cond = {
 ## observations for rendering
 rollout = [observation.copy()]
 
+print('diffusion.horizon', diffusion.horizon)
+print('env.max_episode_steps', env.max_episode_steps)
+print('vis_freq', args.vis_freq)
+args.vis_freq = 10  # TEMP
+
 total_reward = 0
 for t in range(env.max_episode_steps):
 
@@ -115,7 +120,7 @@ for t in range(env.max_episode_steps):
         # renderer.render_plan(join(args.savepath, f'{t}_plan.mp4'), samples.actions, samples.observations, state)
 
         ## save rollout thus far
-        renderer.composite(join(args.savepath, 'rollout.png'), np.array(rollout)[None], ncol=1)
+        renderer.composite(join(args.savepath, f'rollout_{t}.png'), np.array(rollout)[None], ncol=1)
 
         # renderer.render_rollout(join(args.savepath, f'rollout.mp4'), rollout, fps=80)
 

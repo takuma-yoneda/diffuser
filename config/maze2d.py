@@ -43,7 +43,8 @@ base = {
         'renderer': 'utils.Maze2dRenderer',
 
         ## dataset
-        'loader': 'datasets.GoalDataset',
+        'loader': 'datasets.SequenceDataset',
+        'loader_vis': 'datasets.SequenceDataset',
         'termination_penalty': None,
         'normalizer': 'LimitsNormalizer',
         'preprocess_fns': ['maze2d_set_terminals'],

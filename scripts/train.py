@@ -27,6 +27,17 @@ dataset_config = utils.Config(
     max_path_length=args.max_path_length,
 )
 
+dataset_vis_config = utils.Config(
+    args.loader_vis,
+    savepath=(args.savepath, 'dataset_vis_config.pkl'),
+    env=args.dataset,
+    horizon=args.horizon,
+    normalizer=args.normalizer,
+    preprocess_fns=args.preprocess_fns,
+    use_padding=args.use_padding,
+    max_path_length=args.max_path_length,
+)
+
 render_config = utils.Config(
     args.renderer,
     savepath=(args.savepath, 'render_config.pkl'),
@@ -34,6 +45,7 @@ render_config = utils.Config(
 )
 
 dataset = dataset_config()
+dataset_vis = dataset_vis_config()
 renderer = render_config()
 
 observation_dim = dataset.observation_dim
@@ -96,7 +108,7 @@ model = model_config()
 
 diffusion = diffusion_config(model)
 
-trainer = trainer_config(diffusion, dataset, renderer)
+trainer = trainer_config(diffusion, dataset, dataset_vis, renderer)
 
 
 #-----------------------------------------------------------------------------#

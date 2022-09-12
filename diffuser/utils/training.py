@@ -37,6 +37,7 @@ class Trainer(object):
         self,
         diffusion_model,
         dataset,
+        dataset_vis,
         renderer,
         ema_decay=0.995,
         train_batch_size=32,
@@ -74,8 +75,9 @@ class Trainer(object):
         self.dataloader = cycle(torch.utils.data.DataLoader(
             self.dataset, batch_size=train_batch_size, num_workers=1, shuffle=True, pin_memory=True
         ))
+        self.dataset_vis = dataset_vis
         self.dataloader_vis = cycle(torch.utils.data.DataLoader(
-            self.dataset, batch_size=1, num_workers=0, shuffle=True, pin_memory=True
+            self.dataset_vis, batch_size=1, num_workers=0, shuffle=True, pin_memory=True
         ))
         self.renderer = renderer
         self.optimizer = torch.optim.Adam(diffusion_model.parameters(), lr=train_lr)
